@@ -7,37 +7,13 @@ function* iterator() {
 
 let gen = iterator()
 
-function* arrIt(arr) {
-  let idx = 0; 
-  while (idx < arr.length) {
-    yield arr[idx];
-    idx++;
-  }
-}
-
-
-
-
-
-
-var progress = (function () {
-  let counter = 0;
-  return function () {
-    counter += 1; 
-    console.log(counter)
-  }
-})();
 
 
 function* promiseArr(arr) {
   let idx = 0; 
   while (idx < arr.length) {
-    yield idx;
-    arr[idx]()
-      .then(() => {
-        console.log("hello")
-        idx++;
-      })
+    yield arr[idx]
+    idx++;
   }
 }
 
@@ -86,12 +62,20 @@ const prom3 = function() {
 }
 
 let gen2 = promiseArr([prom1, prom2, prom3])
-gen2.next()
+// gen2.next().value().then((() => {
+//   gen2.next().value()
+// }))
+
+async function trial(arr) {
+  for (let i=0; i<arr.length; i++) {
+    await gen2.next().value()
+  }
+}
+
+trial([prom1, prom2, prom3])
 
 // let result = {done: false}
 // while (!result.done) {
 //   result = gen2.next()
 // }
 // console.log(result.done)
-
-// setInterval(progress, 1000);
