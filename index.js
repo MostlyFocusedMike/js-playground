@@ -74,17 +74,19 @@ async function trial(arr) {
 
 
 let nums = [12,2,2,3,4]
-let results = []
-let test = [prom1, prom2, prom3, prom1].reduce(function(p, file) {
-  return p.then(function(results) {
-      return file().then(function(data) {
-          results.push(data);
-          return results;
-      });
-  });
-}, Promise.resolve([]));
 
-console.log(test)
+
+function doIt(promiseArr) {
+  return promiseArr.reduce(function(acc, prom) {
+    return acc.then(results => {
+        return prom()
+    });
+  }, Promise.resolve([]));
+} 
+
+doIt([prom1, prom2, prom3, prom1])
+
+// console.log(test)
 // trial([prom1, prom2, prom3])
 
 // let result = {done: false}
