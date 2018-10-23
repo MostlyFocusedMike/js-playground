@@ -3,11 +3,12 @@ function progress(time) {
     return new Promise((resolve, reject) => {
       let counter = 1;
       let amount = setInterval(() => {
-        console.log(counter++)
+        counter++
         if (counter === 5) {
           clearInterval(amount)
           resolve('') // each promise must actually resolve, however this value is never used 
         }
+        console.log(counter)
       }, time)
     })
   }
