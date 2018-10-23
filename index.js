@@ -75,7 +75,7 @@ async function trial(arr) {
 
 let nums = [12,2,2,3,4]
 let results = []
-let test = [prom1, prom2, prom3].reduce(function(p, file) {
+let test = [prom1, prom2, prom3, prom1].reduce(function(p, file) {
   return p.then(function(results) {
       return file().then(function(data) {
           results.push(data);
