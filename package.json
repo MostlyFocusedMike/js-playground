@@ -20,6 +20,7 @@
   "homepage": "https://github.com/MostlyFocusedMike/js-playground#readme",
   "dependencies": {
     "hapi": "^17.6.0",
+    "hapi-pino": "^5.1.0",
     "inert": "^5.1.0",
     "nodemon": "^1.18.4"
   }

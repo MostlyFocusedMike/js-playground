@@ -1,18 +1,38 @@
 const Hapi = require('hapi');
-
+const Path = require('path');
 // this sets the port that hapi runs on
 const server = Hapi.server({
     port: 8100,
-    host: 'localhost'
+    host: 'localhost',
+    routes: {
+      files: {
+          relativeTo: Path.join(__dirname, "public") // this sets the relative path base for files
+      }
+    }
 });
 
 // actually starts the server 
 const init = async () => {
+
+  // this is how to add multiple plugins
   // inert is a package that lets us serve static assets, recomended by Hapi
+  // hapi-pino is a pretty logger
+  await server.register([
+    {
+      plugin: require('hapi-pino'),
+      options: {
+          prettyPrint: true, // false would just give an array with no newlines added, but seems to offer a little more info
+          logEvents: ['pid','response', 'onPostStart']
+      }
+    },
+    require('inert')
+  ]);
+  // this is how to do a single one; it's either an object, or an array of objects
   // await server.register(require('inert'));
 
+  // with hapi-pino, we get nice logs without this anymore
   await server.start();
-  console.log(`Server running at: ${server.info.uri}`);
+  // console.log(`Server running at: ${server.info.uri}`);
 };
 
 process.on('unhandledRejection', (err) => {
@@ -32,11 +52,13 @@ server.route({
   path: '/',
   handler: (request, h) => {
       console.log(h)
-      return h.file('./public/index.html');
+      return h.file('index.html'); // this goes from the root of the project. see tutorial for relative paths
   }
 });
 
 // this is an alterante way to serve static files, 
+// see more https://hapijs.com/tutorials/serving-files
+// this will show you how to set relative paths
 // server.route({
 //   method: 'GET',
 //   path: '/picture.jpg',
