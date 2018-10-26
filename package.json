@@ -1,5 +1,26 @@
 {
+  "name": "js-playground",
+  "description": "my coding scratch pad. it's gonna be a mess",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon hapi-practice.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MostlyFocusedMike/js-playground.git"
+  },
+  "author": "mike cronin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MostlyFocusedMike/js-playground/issues"
+  },
+  "homepage": "https://github.com/MostlyFocusedMike/js-playground#readme",
   "dependencies": {
+    "hapi": "^17.6.0",
+    "inert": "^5.1.0",
     "nodemon": "^1.18.4"
   }
 }
