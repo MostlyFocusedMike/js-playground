@@ -5,7 +5,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon hapi-practice.js",
+    "start": "nodemon hapi-auth.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/MostlyFocusedMike/js-playground#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "hapi": "^17.6.0",
+    "hapi-auth-basic": "^5.0.0",
     "hapi-pino": "^5.1.0",
     "inert": "^5.1.0",
     "nodemon": "^1.18.4"
